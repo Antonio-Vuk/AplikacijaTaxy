@@ -35,7 +35,7 @@ namespace AplikacijaTaxy {
 																datum = '{6}',
 																vrijeme = '{7}'
 											WHERE id = '{8}'", v.Naziv_osobe, v.Kontakt, v.Pocetna_lokacija, v.Zavrsna_lokacija, 
-			                              v.Cijena, v.Radnik.id, v.Datum, v.Vrijeme, v.id);
+			                              v.Cijena, v.Radnik.id, v.Datum.ToFileTime(), v.Vrijeme, v.id);
 			c.ExecuteNonQuery();
 			c.Dispose();
 		}
@@ -155,7 +155,7 @@ namespace AplikacijaTaxy {
 				voznja.Zavrsna_lokacija = (string)reader["zavrsna_lokacija"];
 				voznja.Cijena = (long)reader["cijena"];
 				voznja.Radnik = DBVozaci.DohvatiPoOIDVozaca((int)(long)reader["id_vozaca"]);
-				voznja.Datum = DateTime.FromFileTime(reader.GetInt64(7));
+				voznja.Datum = DateTime.FromFileTime(reader.GetInt64(8));
 				voznja.Vrijeme = (string)reader["vrijeme"];
 				voznja.Obavljeno = ((bool)reader["obavljeno"]);
 

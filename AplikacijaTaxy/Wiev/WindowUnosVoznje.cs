@@ -26,7 +26,7 @@ namespace AplikacijaTaxy {
 				entry_Kontakt.Text = voznja.Kontakt;
 				entry_PocetnaLokacija.Text = voznja.OD;
 				entry_ZavrsnaLokacija.Text = voznja.DO;
-				spinbutton_Cijena.Text = voznja.Cijena;
+				spinbutton_Cijena.Value = (double)voznja.voznja.Cijena;
 				entry_Vrijeme.Text = voznja.Vrijeme;
 			}
 		}
