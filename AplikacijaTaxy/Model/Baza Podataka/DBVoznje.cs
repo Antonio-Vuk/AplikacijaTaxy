@@ -22,9 +22,8 @@ namespace AplikacijaTaxy {
 			com.ExecuteNonQuery();
 			com.Dispose();
 		}
-		public static void IzmijeniVoznju(string narucitelj, string mob, string lok_od, 
-		                                  string lok_do, long cijena, int id_vozaca, 
-		                                  DateTime datum, string vrijeme, long id) {
+
+		public static void IzmijeniVoznju(Voznja v){
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"UPDATE Voznja SET   narucitelj = '{0}', 
@@ -35,8 +34,8 @@ namespace AplikacijaTaxy {
 																id_vozaca = '{5}',
 																datum = '{6}',
 																vrijeme = '{7}'
-											WHERE id = '{8}'", narucitelj, mob, lok_od, lok_do, 
-			                              cijena, id_vozaca, datum, vrijeme, id);
+											WHERE id = '{8}'", v.Naziv_osobe, v.Kontakt, v.Pocetna_lokacija, v.Zavrsna_lokacija, 
+			                              v.Cijena, v.Radnik.id, v.Datum, v.Vrijeme, v.id);
 			c.ExecuteNonQuery();
 			c.Dispose();
 		}
@@ -49,16 +48,19 @@ namespace AplikacijaTaxy {
 			c.Dispose();
 		}
 
-		public static void DodajVoznju(string narucitelj, string mob, string lok_od, string lok_do, long cijena, 
-		                               int id_vozaca, DateTime datum, string vrijeme) { 
+		public static void DodajVoznju(ref Voznja v) { 
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"INSERT INTO Voznja (narucitelj, kontakt, pocetna_lokacija, zavrsna_lokacija, 
 											cijena, id_vozaca, datum, vrijeme, obavljeno)
 											VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')", 
-			                              narucitelj, mob, lok_od, lok_do, cijena, id_vozaca, datum.ToFileTime(), vrijeme, 0);
+			                              v.Naziv_osobe, v.Kontakt, v.Pocetna_lokacija, v.Zavrsna_lokacija, v.Cijena, v.Radnik.id, v.Datum.ToFileTime(), v.Vrijeme, 0);
 
 			c.ExecuteNonQuery();
+
+			c.CommandText = "SELECT last_insert_rowid()";
+			v.id = (long)c.ExecuteScalar();
+
 			c.Dispose();
 		}
 

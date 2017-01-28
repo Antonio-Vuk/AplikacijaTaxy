@@ -20,6 +20,16 @@ namespace AplikacijaTaxy {
 			lista_vozila = DBVozila.DohvatiSvaVozila();
 			prikazVozila.Dodaj(lista_vozila);
 			popisVozila.NodeStore = prikazVozila;
+
+			popisVozila.NodeSelection.Changed += NodeSelection_Changed;
+		}
+
+		protected void NodeSelection_Changed(object sender, EventArgs e) {
+			if((popisVozila.NodeSelection.SelectedNode as VoziloNode) != null) {
+				button4.Sensitive = true;
+			} else {
+				button4.Sensitive = false;
+			}
 		}
 
 		protected void UnosVozila(object sender, EventArgs e) {

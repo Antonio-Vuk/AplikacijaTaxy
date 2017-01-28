@@ -118,19 +118,21 @@ namespace AplikacijaTaxy {
 			c.Dispose();
 			return lista;
 		}
-		public static void DodajVozaca(string ime, string prezime, string oib, string iban, string broj_mobitela, 
-		                               string adresa, long placa, int auto_id) {
+		public static void DodajVozaca(ref Vozac v) {
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"INSERT INTO Vozaci (ime, prezime, oib, iban, broj_mobitela, adresa, placa, id_vozila)
-				VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')", ime, prezime, oib, iban, broj_mobitela, adresa, placa, auto_id);
+				VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')", v.Ime, v.Prezime, v.Oib, v.Iban, v.Broj_mobitela, v.Adresa, v.placa, v.Auto.id);
 
 			c.ExecuteNonQuery();
+
+			c.CommandText = "SELECT last_insert_rowid()";
+			v.id = (long)c.ExecuteScalar();
+
 			c.Dispose();
 		}
 
-		public static void IzmijeniVozaca(string ime, string prezime, string oib, string iban, string broj_mobitela, 
-		                                  string adresa, long placa, int auto_id, long id) {
+		public static void IzmijeniVozaca(Vozac v) {
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"UPDATE Vozaci SET	ime = '{0}', 
@@ -141,7 +143,7 @@ namespace AplikacijaTaxy {
 																adresa = '{5}',
 																placa = '{6}',
 																id_vozila = '{7}'
-											WHERE id = '{8}'", ime, prezime, oib, iban, broj_mobitela, adresa, placa, auto_id, id);
+											WHERE id = '{8}'", v.Ime, v.Prezime, v.Oib, v.Iban, v.Broj_mobitela, v.Adresa, v.placa, v.Auto.id, v.id);
 			c.ExecuteNonQuery();
 			c.Dispose();
 		}

@@ -101,16 +101,20 @@ namespace AplikacijaTaxy {
 			c.Dispose();
 			return lista;
 		}
-		public static void DodajVozilo(string marka, string model, long godiste, string registracija, int tip) {
+		public static void DodajVozilo(ref Vozilo v) {
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"INSERT INTO Vozila (marka, model, godiste, registracija, tip)
-			VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", marka, model, godiste, registracija, tip);
+			VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", v.Marka, v.Model, v.godiste, v.Registracija, Vozilo.GetTipInt(v.Tip));
 			c.ExecuteNonQuery();
+
+			c.CommandText = "SELECT last_insert_rowid()";
+			v.id = (long)c.ExecuteScalar();
+
 			c.Dispose();
 		}
 
-		public static void IzmijeniVozilo(string marka, string model, long godiste, string registracija, int tip, int id) {
+		public static void IzmijeniVozilo(Vozilo v) {
 			SqliteCommand c = BazaPodataka.con.CreateCommand();
 
 			c.CommandText = string.Format(@"UPDATE Vozila SET	marka = '{0}', 
@@ -118,7 +122,7 @@ namespace AplikacijaTaxy {
 																godiste = '{2}',
 																registracija = '{3}',
 																tip = '{4}' 
-											WHERE id = '{5}'", marka, model, godiste, registracija, tip, id);
+											WHERE id = '{5}'", v.Marka, v.Model, v.godiste, v.Registracija, Vozilo.GetTipInt(v.Tip), v.id);
 			c.ExecuteNonQuery();
 			c.Dispose();
 		}

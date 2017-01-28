@@ -23,6 +23,18 @@ namespace AplikacijaTaxy {
 			lista_vozaca = DBVozaci.DohvatiSveVozace();
 			prikazVozaca.Dodaj(lista_vozaca);
 			popisVozaca.NodeStore = prikazVozaca;
+
+
+			popisVozaca.NodeSelection.Changed += NodeSelectionChanged;;
+
+		}
+
+		protected void NodeSelectionChanged(object sender, EventArgs e) {
+			if((popisVozaca.NodeSelection.SelectedNode as VozacNode) != null) {
+				button14.Sensitive = true;
+			} else {
+				button14.Sensitive = false;
+			}
 		}
 
 		protected void WindowVozaciIzlaz(object sender, EventArgs e) {

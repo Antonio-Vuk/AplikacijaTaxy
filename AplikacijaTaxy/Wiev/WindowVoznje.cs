@@ -23,6 +23,16 @@ namespace AplikacijaTaxy {
 			lista_voznji = DBVoznje.DohvatiNePotvrgeneVoznje();
 			prikazVoznji.Dodaj(lista_voznji);
 			popisVoznji.NodeStore = prikazVoznji;
+
+			popisVoznji.NodeSelection.Changed += NodeSelectionChanged;
+		}
+
+		protected void NodeSelectionChanged(object sender, EventArgs e) {
+			if((popisVoznji.NodeSelection.SelectedNode as VoznjaNode) != null) {
+				button8.Sensitive = true;
+			} else {
+				button8.Sensitive = false;
+			}
 		}
 
 		protected void WindowVoznjeIzlaz(object sender, EventArgs e) {

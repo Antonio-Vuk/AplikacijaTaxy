@@ -18,12 +18,12 @@ namespace AplikacijaTaxy {
 		                             string adresa, long placa, Vozilo auto) {
 			Vozac radnik = new Vozac(ime, prezime, oib, iban, broj_m, adresa, placa, auto);
 			this.add(radnik);
-			DBVozaci.DodajVozaca(ime, prezime, oib, iban, broj_m, adresa, placa, (int)radnik.Auto.id);
+			DBVozaci.DodajVozaca(ref radnik);
 		}
 		public void izmijeniVozaca(VozacNode radnik, string ime, string prezime, string oib, string iban, string broj_m, 
 		                           string adresa, long placa, Vozilo auto) {
 			radnik.UpdateVozac(ime, prezime, oib, iban, broj_m, adresa, placa, auto);
-			DBVozaci.IzmijeniVozaca(ime, prezime, oib, iban, broj_m, adresa, placa, (int)auto.id, radnik.ID);
+			DBVozaci.IzmijeniVozaca(radnik.vozac);
 		}
 		public void ObrisiVozaca(VozacNode radnik) {
 			this.RemoveNode(radnik);

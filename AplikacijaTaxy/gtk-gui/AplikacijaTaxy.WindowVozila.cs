@@ -128,6 +128,7 @@ namespace AplikacijaTaxy
 			// Container child hbox2.Gtk.Box+BoxChild
 			this.button4 = new global::Gtk.Button();
 			this.button4.WidthRequest = 150;
+			this.button4.Sensitive = false;
 			this.button4.CanFocus = true;
 			this.button4.Name = "button4";
 			this.button4.UseUnderline = true;

@@ -262,6 +262,7 @@
               <widget class="Gtk.Button" id="button14">
                 <property name="MemberName" />
                 <property name="WidthRequest">150</property>
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">IZMJENA</property>
@@ -428,6 +429,7 @@
               <widget class="Gtk.Button" id="button4">
                 <property name="MemberName" />
                 <property name="WidthRequest">150</property>
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">IZMJENA</property>
@@ -612,6 +614,7 @@
               <widget class="Gtk.Button" id="button8">
                 <property name="MemberName" />
                 <property name="WidthRequest">150</property>
+                <property name="Sensitive">False</property>
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">IZMJENA</property>

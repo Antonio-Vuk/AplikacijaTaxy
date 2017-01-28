@@ -19,12 +19,12 @@ namespace AplikacijaTaxy {
 		public void dodajNovoVozilo(string marka, string model, int godiste, string registracija, int tip){
 			Vozilo novoVozilo = new Vozilo(marka, model, godiste, registracija, Vozilo.GetTipVrsta(tip));
 			this.add(novoVozilo);
-			DBVozila.DodajVozilo(marka, model, godiste, registracija, tip);
+			DBVozila.DodajVozilo(ref novoVozilo);
 		}
 
 		public void IzmjeniVozilo(VoziloNode vozilo, string marka, string model, int godiste, string registracija, int tip){
 			vozilo.UpdateVozilo(marka, model, godiste, registracija, tip);
-			DBVozila.IzmijeniVozilo(marka, model, godiste, registracija, tip, vozilo.ID);
+			DBVozila.IzmijeniVozilo(vozilo.vozilo);
 		}
 
 		public void ObrisiVozilo(VoziloNode n) {

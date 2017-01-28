@@ -18,12 +18,12 @@ namespace AplikacijaTaxy {
 		                            DateTime date, string vrijeme) {
 			Voznja novaVoznja = new Voznja(nar, kon, poc_lok, zav_lok, cijena, zaposlenik, date, vrijeme);
 			this.add(novaVoznja);
-			DBVoznje.DodajVoznju(nar, kon, poc_lok, zav_lok, cijena, (int)zaposlenik.id, date, vrijeme);
+			DBVoznje.DodajVoznju(ref novaVoznja);
 		}
 		public void izmijeniVoznju(VoznjaNode voznja, string nar, string kon, string poc_lok, string zav_lok, long cijena, 
 		                           Vozac zaposlenik, DateTime date, string vrijeme) {
 			voznja.UpdateVoznja(nar, kon, poc_lok, zav_lok, cijena, zaposlenik, date, vrijeme);
-			DBVoznje.IzmijeniVoznju(nar, kon, poc_lok, zav_lok, cijena, (int)zaposlenik.id, date, vrijeme, voznja.ID);
+			DBVoznje.IzmijeniVoznju(voznja.voznja);
 		}
 		public void ObrisiVoznju(VoznjaNode n) {
 			this.RemoveNode(n);
