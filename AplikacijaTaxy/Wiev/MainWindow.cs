@@ -9,6 +9,7 @@ public partial class MainWindow : Gtk.Window {
 		MainWindow.ForAll<Gtk.Label>((widget) => widget.ModifyFont(Pango.FontDescription.FromString("Arial 15")), this);
 	}
 
+
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a){
 		Application.Quit();
 		a.RetVal = true;
