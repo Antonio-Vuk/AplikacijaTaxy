@@ -15,6 +15,7 @@
     <property name="WindowPosition">CenterOnParent</property>
     <property name="Modal">True</property>
     <property name="BorderWidth">10</property>
+    <property name="Resizable">False</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
